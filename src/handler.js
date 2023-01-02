@@ -16,9 +16,10 @@ const addNoteHandler = (request, h) => {
     createdAt,
     updatedAt,
   };
+
   notes.push(newNote);
 
-  const isSuccess = filter((note) => note.id === id).length > 0;
+  const isSuccess = notes.filter((note) => note.id === id).length > 0;
   
   if (isSuccess) {
     const response = h.response({
@@ -31,6 +32,7 @@ const addNoteHandler = (request, h) => {
     response.code(201);
     return response;
   }
+
   const response = h.response({
     status: 'fail',
     message: 'Catatan gagal ditambahkan',
@@ -125,4 +127,4 @@ const deleteNoteByIdHandler = (request, h) => {
   return response;
 };
 
-module.exports = { addNoteHandler, getAllNotesHandler, getNoteByIdHandler, editNoteByIdHandler, deleteNoteByIdHandler,};
+module.exports = { addNoteHandler, getAllNotesHandler, getNoteByIdHandler, editNoteByIdHandler, deleteNoteByIdHandler};
